@@ -33,40 +33,42 @@ const Hero = () => {
   };
 
   return (
-    <div>
-      <button onClick={handleButtonClick}>
-        {showForm ? "Close" : "Add Skill"}
-      </button>
-      {showForm && (
-        <form onSubmit={(e) => onSubmit(e)}>
-          <div>
-            <label>
-              Skill Name:
-              <input
-                type="text"
-                name="name"
-                value={name}
-                onChange={(e) => onChange(e)}
-                required
-              />
-            </label>
-          </div>
-          <div>
-            <label>
-              Description:
-              <input
-                type="text"
-                name="description"
-                value={description}
-                onChange={(e) => onChange(e)}
-                required
-              />
-            </label>
-          </div>
-          <button type="submit">Submit</button>
-        </form>
-      )}
-    </div>
+    <>
+      <div>
+        <button onClick={handleButtonClick}>
+          {showForm ? "Close" : "Add Skill"}
+        </button>
+        {showForm && (
+          <form onSubmit={(e) => onSubmit(e)}>
+            <div>
+              <label>
+                Skill Name:
+                <input
+                  type="text"
+                  name="name"
+                  value={name}
+                  onChange={(e) => onChange(e)}
+                  required
+                />
+              </label>
+            </div>
+            <div>
+              <label>
+                Description:
+                <input
+                  type="text"
+                  name="description"
+                  value={description}
+                  onChange={(e) => onChange(e)}
+                  required
+                />
+              </label>
+            </div>
+            <button type="submit">Submit</button>
+          </form>
+        )}
+      </div>
+    </>
   );
 };
 

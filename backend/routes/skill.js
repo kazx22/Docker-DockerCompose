@@ -33,4 +33,16 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.delete("/:id", async (req, res) => {
+  try {
+    const deletedSkill = await Skill.findByIdAndDelete(req.params.id);
+    if (!deletedSkill) {
+      return res.status(404).send("Skill not found");
+    }
+    res.status(200).send("Skill deleted successfully");
+  } catch (error) {
+    res.status(500).send("Error deleting skill: " + error.message);
+  }
+});
+
 module.exports = router;
