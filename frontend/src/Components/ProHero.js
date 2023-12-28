@@ -24,13 +24,9 @@ const ProHero = () => {
     const newProject = { name, techStack, description };
     console.log("New Project:", newProject);
     try {
-      const config = { headers: { "Content-Type": "application/json" } };
+      const con = { headers: { "Content-Type": "application/json" } };
       const body = JSON.stringify(newProject);
-      const res = await axios.post(
-        "http://localhost:3000/project",
-        body,
-        config
-      );
+      const res = await axios.post("http://localhost:3000/project", body, con);
       console.log(res);
     } catch (err) {
       console.error("Error:", err);
