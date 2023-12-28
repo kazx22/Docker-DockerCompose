@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import Modal from "./Modal";
 const Show = () => {
   const [skill, setSkill] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedSkill, setSelectedSkill] = useState({
+    id: "",
+    name: "",
+    description: "",
+  });
 
   const getSkill = async () => {
     try {
@@ -22,6 +28,20 @@ const Show = () => {
     }
   };
 
+  const handleOpenModal = (skill) => {
+    setSelectedSkill({
+      id: skill._id,
+      name: skill.name,
+      description: skill.description,
+    });
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    getSkill();
+  };
+
   useEffect(() => {
     getSkill();
   }, [skill]);
@@ -35,9 +55,18 @@ const Show = () => {
             <h3>{skill.name}</h3>
             <p>{skill.description}</p>
             <button onClick={() => handleDelete(skill._id)}>Delete</button>
+            <button onClick={() => handleOpenModal(skill)}>Edit</button>
           </li>
         ))}
       </ul>
+      {showModal && (
+        <Modal
+          skillId={selectedSkill.id}
+          currentName={selectedSkill.name}
+          currentDescription={selectedSkill.description}
+          onClose={handleCloseModal}
+        />
+      )}
     </div>
   );
 };

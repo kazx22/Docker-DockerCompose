@@ -45,4 +45,26 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+router.put("/:id", async (req, res) => {
+  const { name, description } = req.body;
+  const skillId = req.params.id;
+
+  try {
+    let skill = await Skill.findById(skillId);
+    if (!skill) {
+      return res.status(404).json({ msg: "Skill not found" });
+    }
+
+    skill.name = name || skill.name;
+    skill.description = description || skill.description;
+
+    await skill.save();
+
+    res.status(200).json({ msg: "Skill updated successfully", skill });
+  } catch (error) {
+    console.error("Error updating skill:", error);
+    res.status(500).send("Error updating skill");
+  }
+});
+
 module.exports = router;
