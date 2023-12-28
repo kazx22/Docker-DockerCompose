@@ -1,31 +1,36 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const Hero = () => {
+const ProHero = () => {
   const [showForm, setShowForm] = useState(false);
-  const [skillData, setSkillData] = useState({
+  const [projectData, setProjectData] = useState({
     name: "",
+    techStack: "",
     description: "",
   });
 
-  const { name, description } = skillData;
+  const { name, techStack, description } = projectData;
 
   const handleButtonClick = () => {
     setShowForm(!showForm);
   };
 
   const onChange = (e) =>
-    setSkillData({ ...skillData, [e.target.name]: e.target.value });
+    setProjectData({ ...projectData, [e.target.name]: e.target.value });
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    const newSkill = { name, description };
-    console.log("New Skill:", newSkill);
+    const newProject = { name, techStack, description };
+    console.log("New Project:", newProject);
     try {
-      const con = { headers: { "Content-Type": "application/json" } };
-      const body = JSON.stringify(newSkill);
-      const res = await axios.post("http://localhost:3000/skill", body, con);
+      const config = { headers: { "Content-Type": "application/json" } };
+      const body = JSON.stringify(newProject);
+      const res = await axios.post(
+        "http://localhost:3000/project",
+        body,
+        config
+      );
       console.log(res);
     } catch (err) {
       console.error("Error:", err);
@@ -36,17 +41,29 @@ const Hero = () => {
     <>
       <div>
         <button onClick={handleButtonClick}>
-          {showForm ? "Close" : "Add Skill"}
+          {showForm ? "Close" : "Add Project"}
         </button>
         {showForm && (
           <form onSubmit={(e) => onSubmit(e)}>
             <div>
               <label>
-                Skill Name:
+                Project Name:
                 <input
                   type="text"
                   name="name"
                   value={name}
+                  onChange={(e) => onChange(e)}
+                  required
+                />
+              </label>
+            </div>
+            <div>
+              <label>
+                Tech Stack:
+                <input
+                  type="text"
+                  name="techStack"
+                  value={techStack}
                   onChange={(e) => onChange(e)}
                   required
                 />
@@ -71,4 +88,5 @@ const Hero = () => {
     </>
   );
 };
-export default Hero;
+
+export default ProHero;
