@@ -1,12 +1,15 @@
 import React from "react";
 import ProHero from "../Components/ProHero";
 import ProShow from "../Components/ProShow";
+import "../App.css";
 
 const Projects = () => {
   return (
     <>
-      <ProHero />
-      <ProShow />
+      <div className="container">
+        <ProHero />
+        <ProShow />
+      </div>
     </>
   );
 };

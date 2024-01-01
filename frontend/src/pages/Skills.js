@@ -1,12 +1,14 @@
 import React from "react";
 import Hero from "../Components/Hero";
 import Show from "../Components/Show";
-
+import "../App.css";
 const Skills = () => {
   return (
     <>
-      <Hero />
-      <Show />
+      <div className="container">
+        <Hero />
+        <Show />
+      </div>
     </>
   );
 };
