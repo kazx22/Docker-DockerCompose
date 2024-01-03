@@ -8,6 +8,8 @@ services:
     volumes:
       - mongo:/data/db
     restart: always
+    networks:
+      - backend
 
   frontend:
     build: ./frontend
@@ -18,6 +20,8 @@ services:
       - backend
     volumes:
       - ./frontend:/app
+    networks:
+      - backend
 
   backend:
     build: ./backend
@@ -26,11 +30,15 @@ services:
       - "3000:3000"
     volumes:
       - ./backend:/app
-    environment:
-      PORT: 3000
-      MONGO_URI: mongodb://mongo:27017/
     depends_on:
       - mongodb
+    networks:
+      - frontend
+      - backend
 
 volumes:
   mongo:
+
+networks:
+  frontend:
+  backend:

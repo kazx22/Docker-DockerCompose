@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
-const MONGODB_URI =
-  "mongodb+srv://kazx:wcBE8f3K5TH5V8N2@portfolio.mu9i2wc.mongodb.net/?retryWrites=true&w=majority";
+const MONGODB_URI = "mongodb://mongodb:27017/portfolio";
 
 // Connect to MongoDB
 const connectDB = async () => {

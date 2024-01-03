@@ -1,17 +1,13 @@
 const express = require("express");
 const connectDB = require("./dbase/db");
+const cors = require("cors");
 
 const app = express();
 
 connectDB();
 
+app.use(cors());
 app.use(express.json());
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3001");
-  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  next();
-});
 
 app.get("/", (req, res) => res.send("API Running"));
 app.use("/skill", require("./routes/skill"));
