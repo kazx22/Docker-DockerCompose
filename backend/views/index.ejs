@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects List</title>
+  </head>
+  <body>
+    <h1>Projects List</h1>
+    <ul>
+      <% projects.forEach(project => { %>
+      <li>
+        <%= project.name %> - <%= project.techStack %> - <%= project.description
+        %>
+        <form
+          method="PUT"
+          action="/project/edit/<%= project._id %>"
+          style="display: inline"
+        >
+          <button type="submit">Edit</button>
+        </form>
+        <form
+          method="DELETE"
+          action="/project/delete/<%= project._id %>"
+          style="display: inline"
+        >
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+      <% }); %>
+    </ul>
+    <form method="GET" action="/project/add">
+      <button type="submit">Add Project</button>
+    </form>
+
+
+
+    <h1>Skills List</h1>
+    <ul>
+      <% skills.forEach(skill => { %>
+      <li>
+        <%= skill.name %> - <%= skill.techStack %> - <%= skill.description
+        %>
+        <form
+          method="PUT"
+          action="/skill/edit/<%= skill._id %>"
+          style="display: inline"
+        >
+          <button type="submit">Edit</button>
+        </form>
+        <form
+          method="DELETE"
+          action="/skill/delete/<%= skill._id %>"
+          style="display: inline"
+        >
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+      <% }); %>
+    </ul>
+    <form method="GET" action="/skill/add">
+      <button type="submit">Add Skill</button>
+  </body>
+</html>

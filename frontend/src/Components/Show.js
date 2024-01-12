@@ -54,8 +54,8 @@ const Show = () => {
           <li key={i}>
             <h3>{skill.name}</h3>
             <p>{skill.description}</p>
-            <button onClick={() => handleDelete(skill._id)}>Delete</button>
-            <button onClick={() => handleOpenModal(skill)}>Edit</button>
+            {/* <button onClick={() => handleDelete(skill._id)}>Delete</button>
+            <button onClick={() => handleOpenModal(skill)}>Edit</button> */}
           </li>
         ))}
       </ul>

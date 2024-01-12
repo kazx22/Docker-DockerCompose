@@ -6,7 +6,7 @@ const Skills = () => {
   return (
     <>
       <div className="container">
-        <Hero />
+        {/* <Hero /> */}
         <Show />
       </div>
     </>

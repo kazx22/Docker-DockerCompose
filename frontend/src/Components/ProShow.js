@@ -14,8 +14,8 @@ const ProShow = () => {
 
   const getProjects = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/project");
-      setProjects(response.data);
+      const response = await axios.get("http://localhost:3000/project"); // using axios to get all the project from backend
+      setProjects(response.data); // setting all the projects as an array on project state
     } catch (error) {
       console.error("Error fetching projects:", error);
     }
@@ -58,9 +58,10 @@ const ProShow = () => {
         {projects.map((project, i) => (
           <li key={i}>
             <h3>{project.name}</h3>
+            <h4>{project.techStack}</h4>
             <p>{project.description}</p>
-            <button onClick={() => handleDelete(project._id)}>Delete</button>
-            <button onClick={() => handleOpenModal(project)}>Edit</button>
+            {/* <button onClick={() => handleDelete(project._id)}>Delete</button>
+            <button onClick={() => handleOpenModal(project)}>Edit</button> */}
           </li>
         ))}
       </ul>

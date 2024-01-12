@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// Skill table for mongo
 const skillSchema = new mongoose.Schema({
   name: {
     type: String,

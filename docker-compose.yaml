@@ -1,47 +1,48 @@
-version: "3"
+version: "3" # Specifies the Docker Compose version
+
 services:
-  mongodb:
-    container_name: database_c
-    image: mongo
+  mongodb: # Service for MongoDB
+    container_name: database_c # Defines the name of the MongoDB container
+    image: mongo # Specifies the Docker image to be used for MongoDB
     ports:
-      - "27017:27017"
+      - "27017:27017" # Maps port 27017 on the host to port 27017 on the container
     volumes:
-      - mongo:/data/db
-    # environment:
-    #   MONGO_INITDB_ROOT_USERNAME: admin
-    #   MONGO_INITDB_ROOT_PASSWORD: pass
-    restart: always
+      - mongo:/data/db # Creates a Docker volume for MongoDB data storage
+    # environment:  # Defines environment variables for MongoDB initialization
+    #   MONGO_INITDB_ROOT_USERNAME: admin  # MongoDB root username
+    #   MONGO_INITDB_ROOT_PASSWORD: pass  # MongoDB root password
+    restart: always # Restarts the container automatically if it exits
     networks:
-      - backend
+      - backend # Connects the container to the 'backend' network
 
-  frontend:
-    build: ./frontend
-    container_name: frontend_c
+  frontend: # Service for the Frontend application
+    build: ./frontend # Specifies the build context for the Frontend service
+    container_name: frontend_c # Defines the name of the Frontend container
     ports:
-      - "5000:3000"
+      - "5000:3000" # Maps port 5000 on the host to port 3000 on the container
     depends_on:
-      - backend
+      - backend # Specifies that the Frontend service depends on the Backend service
     volumes:
-      - ./frontend:/app
+      - ./frontend:/app # Mounts the local 'frontend' directory to '/app' in the container
     networks:
-      - backend
+      - backend # Connects the container to the 'backend' network
 
-  backend:
-    build: ./backend
-    container_name: backend_c
+  backend: # Service for the Backend application
+    build: ./backend # Specifies the build context for the Backend service
+    container_name: backend_c # Defines the name of the Backend container
     ports:
-      - "3000:3000"
+      - "3000:3000" # Maps port 3000 on the host to port 3000 on the container
     volumes:
-      - ./backend:/app
+      - ./backend:/app # Mounts the local 'backend' directory to '/app' in the container
     depends_on:
-      - mongodb
+      - mongodb # Specifies that the Backend service depends on the MongoDB service
     networks:
-      - frontend
-      - backend
+      - frontend # Connects the container to the 'frontend' network
+      - backend # Connects the container to the 'backend' network
 
 volumes:
-  mongo:
+  mongo: # Defines a named volume 'mongo' for MongoDB data storage
 
 networks:
-  frontend:
-  backend:
+  frontend: # Defines a network named 'frontend' for communication between services
+  backend: # Defines a network named 'backend' for communication between services

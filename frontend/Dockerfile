@@ -1,12 +1,21 @@
-FROM node:latest   
+
+# Specifies the base Docker image as the latest Node.js image
+FROM node:latest    
+
+# Set the working directory to /app
 WORKDIR /app
 
+# Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
 
+# Install npm dependencies
 RUN npm install
 
+# Copy all files to the working directory
 COPY . .
 
+# Expose port 5000
 EXPOSE 5000
 
+# Define the command to run the application
 CMD [ "npm", "start" ]

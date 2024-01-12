@@ -7,7 +7,7 @@ const Projects = () => {
   return (
     <>
       <div className="container">
-        <ProHero />
+        {/* <ProHero /> */}
         <ProShow />
       </div>
     </>
